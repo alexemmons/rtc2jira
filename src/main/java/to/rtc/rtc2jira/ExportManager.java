@@ -31,7 +31,7 @@ public class ExportManager {
       String timestamp =
           date.getYear() + "_" + date.getMonthValue() + "_" + date.getDayOfMonth() + "__" + date.getHour() + "_"
               + date.getMinute();
-      fh = new FileHandler("C:/workspace/gitRepRtcToJira/rtc2jira/DefaultExportLog_" + timestamp + ".log");
+      fh = new FileHandler("C:/workspaces/rtc2jira/DefaultExportLog_" + timestamp + ".log");
       SimpleFormatter formatter = new SimpleFormatter();
       fh.setFormatter(formatter);
     } catch (SecurityException e) {

@@ -1,5 +1,6 @@
 package to.rtc.rtc2jira;
 
+import to.rtc.rtc2jira.exporter.github.GitHubExporter;
 import to.rtc.rtc2jira.exporter.jira.JiraExporter;
 import to.rtc.rtc2jira.exporter.systemout.LoggingExporter;
 import to.rtc.rtc2jira.importer.RTCImporter;
@@ -16,6 +17,7 @@ public class Main {
     Settings settings = Settings.getInstance();
     setUpProxy(settings);
     ExportManager exportManager = new ExportManager();
+//    GitHubExporter exporter = new GitHubExporter();
     exportManager.addExporters(JiraExporter.INSTANCE, new LoggingExporter());
     try (StorageEngine storageEngine = new StorageEngine()) {
       doImport(settings, storageEngine);

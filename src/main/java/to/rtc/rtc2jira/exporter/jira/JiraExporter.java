@@ -16,6 +16,12 @@ import java.util.logging.Logger;
 
 import javax.ws.rs.core.MediaType;
 
+import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.ClientResponse.Status;
+import com.sun.jersey.multipart.FormDataMultiPart;
+import com.sun.jersey.multipart.file.FileDataBodyPart;
+
 import to.rtc.rtc2jira.ExportManager;
 import to.rtc.rtc2jira.Settings;
 import to.rtc.rtc2jira.exporter.Exporter;
@@ -43,12 +49,6 @@ import to.rtc.rtc2jira.storage.Comment;
 import to.rtc.rtc2jira.storage.FieldNames;
 import to.rtc.rtc2jira.storage.StorageEngine;
 import to.rtc.rtc2jira.storage.StorageQuery;
-
-import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.ClientResponse.Status;
-import com.sun.jersey.multipart.FormDataMultiPart;
-import com.sun.jersey.multipart.file.FileDataBodyPart;
 
 public class JiraExporter implements Exporter {
   private static final String DUMMY_SUMMARY_TEXT = "Dummy";
@@ -463,13 +463,13 @@ public class JiraExporter implements Exporter {
     StateEnum targetStatus = issue.getFields().getStatus().getStatusEnum(issueType);
     StateEnum currentStatus = lastExportedIssue.getFields().getStatus().getStatusEnum(issueType);
     List<String> transitionPath = null;
-    if (!currentStatus.isEditable() && currentStatus == targetStatus) {
+    if (currentStatus.isEditable() && currentStatus == targetStatus) {
       transitionPath = currentStatus.forceTransitionPath(targetStatus);
     } else {
       transitionPath = currentStatus.getTransitionPath(targetStatus);
     }
     // put issue in editable state
-    if (!currentStatus.isEditable()) {
+    if (currentStatus.isEditable()) {
       String intermediateTransitionId = transitionPath.remove(0);
       if (!doTransition(issue, intermediateTransitionId)) {
         throw new Exception();
@@ -505,7 +505,7 @@ public class JiraExporter implements Exporter {
     if (isResponseOk(postResponse)) {
       return true;
     } else {
-      LOGGER.severe("Problems while transitioning issue: " + postResponse.getEntity(String.class));
+      LOGGER.severe("Problems while transitioning issue "+ issue.getKey() +": " + postResponse.getEntity(String.class));
       return false;
     }
   }

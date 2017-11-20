@@ -11,6 +11,7 @@ import static to.rtc.rtc2jira.storage.WorkItemTypes.STORY;
 import static to.rtc.rtc2jira.storage.WorkItemTypes.TASK;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map.Entry;
@@ -56,7 +57,7 @@ public class GitHubExporter implements Exporter {
   @Override
   public void initialize(Settings settings, StorageEngine engine) throws IOException {
     this.store = new GitHubStorage(engine);
-    this.client = new GitHubClient();
+    this.client = new GitHubClient("github.ibm.com");
     this.service = new RepositoryService(client);
     this.issueService = new IssueService(client);
     client.setCredentials(settings.getGithubUser(), settings.getGithubPassword());
@@ -76,6 +77,20 @@ public class GitHubExporter implements Exporter {
     for (Entry<String, Object> entry : workItem) {
       String field = entry.getKey();
       switch (field) {
+//      	case CREATIONDATE:
+//      	  issue.setCreatedAt((Date) entry.getValue());
+//      	  break;
+//      	case OWNER:
+//      		User owner = new User();
+//      		owner.setName((String) entry.getValue());
+//      	  issue.setAssignee(owner);
+//      	  break;
+        case FieldNames.STATE:
+        	System.out.println((String) entry.getValue());
+        	// com.ibm.team.apt.story.tested
+        	// https://github.com/rtcTo/rtc2jira/blob/master/docs/RtcStateLiterals.txt
+          issue.setState((String) entry.getValue());
+          break;
         case ID:
           String id = (String) entry.getValue();
           issue.setNumber(Integer.valueOf(id));
@@ -95,7 +110,9 @@ public class GitHubExporter implements Exporter {
               issue.setLabels(Collections.singletonList(getLabel("Task")));
               break;
             case STORY:
-              issue.setLabels(Collections.singletonList(getLabel("Story")));
+            	//if workItem.field(STORY_POINTS)
+              Label points = getLabel("Story Points: " + workItem.field(FieldNames.STORY_POINTS));
+              issue.setLabels(Arrays.asList(getLabel("Story"), points));
               break;
             case EPIC:
               issue.setLabels(Collections.singletonList(getLabel("Epic")));

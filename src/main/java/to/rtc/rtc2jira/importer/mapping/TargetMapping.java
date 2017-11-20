@@ -19,8 +19,12 @@ import to.rtc.rtc2jira.importer.RTCImporter;
 import to.rtc.rtc2jira.importer.mapping.spi.MappingAdapter;
 import to.rtc.rtc2jira.storage.FieldNames;
 
+import com.ibm.team.process.common.IIterationType;
+import com.ibm.team.process.common.IIterationTypeHandle;
 import com.ibm.team.process.internal.common.Iteration;
 import com.ibm.team.process.internal.common.IterationHandle;
+import com.ibm.team.process.internal.common.IterationType;
+import com.ibm.team.process.internal.common.IterationTypeHandle;
 import com.ibm.team.workitem.common.model.IAttribute;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 

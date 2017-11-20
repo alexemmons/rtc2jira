@@ -14,6 +14,22 @@ import java.util.logging.Logger;
 import to.rtc.rtc2jira.ExportManager;
 
 public enum StateEnum {
+  migr_verified("10004", "Verified", "4") {
+	  @Override
+	    protected StatusCategory createStatusCategory() {
+	      return StatusCategory.createToDo();
+	    }
+
+	    @Override
+	    protected Map<StateEnum, String> getTransitionMap() {
+	      return StateEnum.getMigrationTransitionMap(this);
+	    }
+	    
+	    @Override
+	    public boolean isFinished() {
+	      return true;
+	    }
+  },
   migr_resolved("5", "Resolved", "3", "com.ibm.team.workitem.impedimentWorkflow.state.s2") {
 
     @Override
@@ -24,6 +40,11 @@ public enum StateEnum {
     @Override
     protected Map<StateEnum, String> getTransitionMap() {
       return StateEnum.getMigrationTransitionMap(this);
+    }
+    
+    @Override
+    public boolean isFinished() {
+      return true;
     }
   }, // 51 business need
   migr_reopened("4", "Reopened", "6") {
@@ -50,6 +71,11 @@ public enum StateEnum {
     @Override
     protected Map<StateEnum, String> getTransitionMap() {
       return StateEnum.getMigrationTransitionMap(this);
+    }
+    
+    @Override
+    public boolean isFinished() {
+      return true;
     }
   }, // 51 business need
   migr_implemented("10104", "Implemented", "com.ibm.team.apt.story.tested") {
@@ -193,7 +219,7 @@ public enum StateEnum {
       return StateEnum.getMigrationTransitionMap(this);
     }
   },
-  migr_closed("6", "Closed", "4", "55") {
+  migr_closed("6", "Closed", "55") {
 
     @Override
     protected StatusCategory createStatusCategory() {
@@ -364,21 +390,22 @@ public enum StateEnum {
 
   static private Map<StateEnum, String> getMigrationTransitionMap(StateEnum fromState) {
     Map<StateEnum, String> transitionMap = new HashMap<StateEnum, String>();
-    transitionMap.put(migr_resolved, "71");
-    transitionMap.put(migr_reopened, "61");
-    transitionMap.put(migr_invalid, "51");
-    transitionMap.put(migr_implemented, "41");
-    transitionMap.put(migr_new, "21");
+    transitionMap.put(migr_resolved, "121");
+    transitionMap.put(migr_reopened, "141");
+    transitionMap.put(migr_invalid, "131");
+    transitionMap.put(migr_implemented, "151");
+    transitionMap.put(migr_new, "11");
     transitionMap.put(migr_done, "31");
-    transitionMap.put(migr_unqualified, "11");
-    transitionMap.put(migr_qualified, "81");
-    transitionMap.put(migr_approved, "101");
-    transitionMap.put(migr_estimationOk, "111");
-    transitionMap.put(migr_readyProduction, "121");
-    transitionMap.put(migr_inProgress, "131");
-    transitionMap.put(migr_developmentDone, "141");
-    transitionMap.put(migr_closed, "151");
-    transitionMap.put(migr_deferred, "91");
+//    transitionMap.put(migr_unqualified, "999");
+//    transitionMap.put(migr_qualified, "999");
+    transitionMap.put(migr_approved, "999");
+//    transitionMap.put(migr_estimationOk, "999");
+//    transitionMap.put(migr_readyProduction, "999");
+    transitionMap.put(migr_inProgress, "21");
+//    transitionMap.put(migr_developmentDone, "999");
+    transitionMap.put(migr_closed, "111");
+    transitionMap.put(migr_deferred, "161");
+    transitionMap.put(migr_verified, "171");
     // replace from state value
     transitionMap.put(fromState, NO_TRANSITION);
     return transitionMap;

@@ -6,7 +6,6 @@ package to.rtc.rtc2jira.exporter.jira.mapping;
 import java.util.EnumSet;
 
 import to.rtc.rtc2jira.exporter.jira.entities.Issue;
-import to.rtc.rtc2jira.exporter.jira.entities.IssueResolution;
 import to.rtc.rtc2jira.exporter.jira.entities.ResolutionEnum;
 import to.rtc.rtc2jira.exporter.jira.entities.Timetracking;
 import to.rtc.rtc2jira.storage.StorageEngine;
@@ -23,24 +22,23 @@ public class EstimatedHoursMapping implements Mapping {
 
   @Override
   public void map(Object value, Issue issue, StorageEngine storage) {
+	Timetracking timetracking = issue.getFields().getTimetracking();
     if (value == null) {
-      Timetracking timetracking = new Timetracking();
       timetracking.setOriginalEstimate("0m");
     } else {
-      int hours = ((Integer) value).intValue();
+      Long millis = (Long) value;
+      Long hours = millis / 3600000;
       if (hours <= 0) {
-        Timetracking timetracking = new Timetracking();
         timetracking.setOriginalEstimate("0m");
       } else {
-        int minutes = hours * 360;
-        Timetracking timetracking = new Timetracking();
+        int minutes = hours.intValue() * 60;
         timetracking.setOriginalEstimate(minutes + "m");
-        IssueResolution resolution = issue.getFields().getResolution();
-        if (resolution != null && NO_REMAINING_TIME.contains(resolution.getEnum())) {
-          timetracking.setRemainingEstimate("0m");
-        }
-        issue.getFields().setTimetracking(timetracking);
+//        IssueResolution resolution = issue.getFields().getResolution();
+//        if (resolution != null && NO_REMAINING_TIME.contains(resolution.getEnum())) {
+//          timetracking.setRemainingEstimate("0m");
+//        }
       }
+      issue.getFields().setTimetracking(timetracking);
     }
   }
 }

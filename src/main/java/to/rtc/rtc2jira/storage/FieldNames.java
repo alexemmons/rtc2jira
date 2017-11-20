@@ -67,5 +67,11 @@ public interface FieldNames {
   String JIRA_KEY_LINK = "jiraKey";
   String JIRA_EXPORT_TIMESTAMP = "jiraExportTimestamp";
   String JIRA_LAST_EXPORTED_STATUS = "lastExportedStatus";
+  String APAR = "aparId";
+  String FIXED_IN = "fixedIn";
+  String FOUND_IN = "foundIn";
+  String CUSTOMER_LIST = "customer15";
+  String IMPACT = "impact";
+  String TIME_SPENT = "timeSpent";
 
 }

@@ -8,11 +8,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import com.orientechnologies.orient.core.record.impl.ODocument;
+
 import to.rtc.rtc2jira.exporter.jira.entities.Issue;
 import to.rtc.rtc2jira.storage.FieldNames;
 import to.rtc.rtc2jira.storage.StorageEngine;
-
-import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**
  * @author roman.schaller
@@ -45,6 +45,7 @@ public class MappingRegistry {
     registry.put(FieldNames.SUBSCRIPTIONS, new WatcherMapping());
     registry.put(FieldNames.ITERATION_INFO, new IterationMapping());
     registry.put(FieldNames.ESTIMATED_TIME, new EstimatedHoursMapping());
+    registry.put(FieldNames.TIME_SPENT, new RemainingHoursMapping());
     registry.put(FieldNames.BISON_PROJECT_NAME, new BisonProjectNameMapping());
     registry.put(FieldNames.REF_MODEL, new RefModelMapping());
     registry.put(FieldNames.EP_REQ_NR, new EpReqNrMapping());
@@ -67,6 +68,10 @@ public class MappingRegistry {
     registry.put(FieldNames.IMPLEMENTATION_LEVEL, new JiraImplementationLevelMapping());
     registry.put(FieldNames.PARENT, new ParentMapping());
     registry.put(FieldNames.PROJECT_AREA, new ProjectAreaMapping());
+    registry.put(FieldNames.APAR, new APARMapping());
+    registry.put(FieldNames.CUSTOMER_LIST, new CustomerListMapping());
+    registry.put(FieldNames.FIXED_IN, new FixedInMapping());
+    registry.put(FieldNames.IMPACT, new ImpactMapping());
   }
 
   public void map(ODocument workItem, Issue issue, StorageEngine storage) {

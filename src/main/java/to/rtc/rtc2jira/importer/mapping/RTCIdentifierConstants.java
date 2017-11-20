@@ -79,7 +79,10 @@ public interface RTCIdentifierConstants {
   public static final String CUSTOMER = "customer";
   public static final String REALISED_BY_IDM = "realisebyidm";
   public static final String IMPLEMENTATION_LEVEL = "implementationlevel";
-  public static final String IMPACT = "impact";
+  public static final String IMPACT = "com.ibm.team.rtc.attribute.impact";
   public static final String AFFECTED_TEAMS = "affectedTeams";
   public static final String PARENT = "parent";
+  public static final String APAR = "aparId";
+  public static final String FIXED_IN = "fixedIn";
+  public static final String CUSTOMER_LIST = "customer15";
 }

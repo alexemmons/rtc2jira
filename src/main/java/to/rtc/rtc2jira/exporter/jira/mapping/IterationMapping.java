@@ -46,7 +46,7 @@ public class IterationMapping implements Mapping {
     }
   }
 
-  IterationInfo getVersionIteration(IterationInfo iterInfo) {
+  static IterationInfo getVersionIteration(IterationInfo iterInfo) {
     IterationInfo result = null;
     IterationInfo current = iterInfo;
     // release

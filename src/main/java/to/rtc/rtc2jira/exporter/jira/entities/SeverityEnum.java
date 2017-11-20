@@ -1,9 +1,9 @@
 package to.rtc.rtc2jira.exporter.jira.entities;
 
 public enum SeverityEnum {
-  blocker("severity.literal.l6", "1"), critical("severity.literal.l5", "2"), major(
-      "severity.literal.l4", "3"), normal("severity.literal.l3", "4"), minor("severity.literal.l2",
-      "5"), unclassified("severity.literal.l1", "5");
+  blocker("severity.literal.l6", "10306"), critical("severity.literal.l5", "10307"), major(
+      "severity.literal.l4", "10308"), normal("severity.literal.l3", "10309"),
+  		unclassified("severity.literal.l1", "10310");
 
 
 
@@ -19,7 +19,7 @@ public enum SeverityEnum {
     return rtcId;
   }
 
-  public String getJiraPriorityId() {
+  public String getJiraId() {
     return jiraId;
   }
 
@@ -32,14 +32,18 @@ public enum SeverityEnum {
       return SeverityEnum.major;
     } else if (SeverityEnum.normal.getRtcId().equals(literal)) {
       return SeverityEnum.normal;
-    } else if (SeverityEnum.minor.getRtcId().equals(literal)) {
-      return SeverityEnum.minor;
+//    } else if (SeverityEnum.minor.getRtcId().equals(literal)) {
+//      return SeverityEnum.minor;
     } else if (SeverityEnum.unclassified.getRtcId().equals(literal)) {
       return SeverityEnum.unclassified;
     } else {
       throw new IllegalArgumentException("No corresponding SeverityValue for the literal "
           + literal);
     }
+  }
+  
+  public CustomFieldOption getCustomFieldOption() {
+    return new CustomFieldOption(getJiraId());
   }
 
 }

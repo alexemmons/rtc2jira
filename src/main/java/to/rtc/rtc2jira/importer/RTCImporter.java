@@ -49,7 +49,7 @@ public class RTCImporter {
   static {
     FileHandler fh = null;
     try {
-      fh = new FileHandler("C:/workspace/gitRepRtcToJira/rtc2jira/DefaultImportLog.log");
+      fh = new FileHandler("C:/workspaces/rtc2jira/DefaultImportLog.log");
       SimpleFormatter formatter = new SimpleFormatter();
       fh.setFormatter(formatter);
     } catch (SecurityException e) {

@@ -4,13 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import to.rtc.rtc2jira.importer.mapping.spi.Mapping;
-import to.rtc.rtc2jira.importer.mapping.spi.MappingRegistry;
-import to.rtc.rtc2jira.storage.FieldNames;
-
 import com.ibm.team.workitem.common.model.IAttribute;
 import com.ibm.team.workitem.common.model.IWorkItem;
 import com.orientechnologies.orient.core.record.impl.ODocument;
+
+import to.rtc.rtc2jira.importer.mapping.spi.Mapping;
+import to.rtc.rtc2jira.importer.mapping.spi.MappingRegistry;
+import to.rtc.rtc2jira.storage.FieldNames;
 
 public class DefaultMappingRegistry implements MappingRegistry {
   private final static DefaultMappingRegistry INSTANCE = new DefaultMappingRegistry();
@@ -34,9 +34,9 @@ public class DefaultMappingRegistry implements MappingRegistry {
     register(RTCIdentifierConstants.CREATOR, new ContributorMapping(FieldNames.CREATOR));
     register(RTCIdentifierConstants.MODIFIED_BY, new ContributorMapping(FieldNames.MODIFIED_BY));
     register(RTCIdentifierConstants.RESOLVER, new ContributorMapping(FieldNames.RESOLVER));
-    register(RTCIdentifierConstants.DURATION, new NullMapping());
+    register(RTCIdentifierConstants.DURATION, new LongMapping(FieldNames.ESTIMATED_TIME));
     register(RTCIdentifierConstants.CORRECTED_ESTIMATE, new NullMapping());
-    register(RTCIdentifierConstants.TIME_SPENT, new NullMapping());
+    register(RTCIdentifierConstants.TIME_SPENT, new LongMapping(FieldNames.TIME_SPENT));
     register(RTCIdentifierConstants.CATEGORY, new CategoryMapping());
     register(RTCIdentifierConstants.ARCHIVED, new BooleanMapping(FieldNames.ARCHIVED));
     register(RTCIdentifierConstants.CONTEXT_ID, new NullMapping());
@@ -54,7 +54,7 @@ public class DefaultMappingRegistry implements MappingRegistry {
     register(RTCIdentifierConstants.DUE_DATE, new DateMapping(FieldNames.DUE_DATE));
     register(RTCIdentifierConstants.SUBSCRIPTIONS, new SubscriptionsMapping());
     register(RTCIdentifierConstants.STATE_TRANSITIONS, new NullMapping());
-    register(RTCIdentifierConstants.ESTIMATED_HOURS, new IntegerMapping(FieldNames.ESTIMATED_TIME));
+//    register(RTCIdentifierConstants.ESTIMATED_HOURS, new IntegerMapping(FieldNames.ESTIMATED_TIME));
     register(RTCIdentifierConstants.PROJECT_NAME, new BisonProjectMapping());
     register(RTCIdentifierConstants.PROJECT_NAME_DEPRECATED, new NullMapping());
     register(RTCIdentifierConstants.REFERENCE_MODEL, new RefModelMapping());
@@ -88,8 +88,12 @@ public class DefaultMappingRegistry implements MappingRegistry {
     register(RTCIdentifierConstants.CUSTOMER, new CustomerMapping());
     register(RTCIdentifierConstants.REALISED_BY_IDM, new RealisedByIdmMapping());
     register(RTCIdentifierConstants.IMPLEMENTATION_LEVEL, new ImplementationLevelMapping());
-    register(RTCIdentifierConstants.IMPACT, new NullMapping());
+    register(RTCIdentifierConstants.IMPACT, new ImpactMapping());
     register(RTCIdentifierConstants.AFFECTED_TEAMS, new NullMapping());
+    register(RTCIdentifierConstants.APAR, new StringMapping(FieldNames.APAR));
+    register(RTCIdentifierConstants.CUSTOMER_LIST, new StringListMapping(FieldNames.CUSTOMER_LIST));
+    register(RTCIdentifierConstants.FIXED_IN, new DeliverableMapping(FieldNames.FIXED_IN));
+    
   };
 
   public static DefaultMappingRegistry getInstance() {

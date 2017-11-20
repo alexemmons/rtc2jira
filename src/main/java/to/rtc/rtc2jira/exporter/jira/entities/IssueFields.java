@@ -79,6 +79,12 @@ public class IssueFields {
   private String epicName;
   private List<Version> fixVersions = new ArrayList<Version>();
   private String rtcProjectArea;
+  
+  private String aparId;
+  private Version fixedIn;
+  private List<CustomFieldOption> customer15 = new ArrayList<CustomFieldOption>();
+  private CustomFieldOption severity;
+  private CustomFieldOption impact;
 
   public IssueType getIssuetype() {
     return issuetype;
@@ -190,7 +196,7 @@ public class IssueFields {
     this.resolutiondate = resolutiondate;
   }
 
-  @XmlElement(name = "customfield_10220")
+  @XmlElement(name = "customfield_10007")
   @XmlJavaTypeAdapter(JiraDateStringAdapter.class)
   public Date getRtcResolutiondate() { // done
     return rtcResolutiondate;
@@ -247,7 +253,7 @@ public class IssueFields {
   }
 
   @JsonView(IssueView.Update.class)
-  @XmlElement(name = "customfield_10002")
+  @XmlElement(name = "customfield_10006")
   public Integer getStoryPoints() { // done
     return storyPoints;
   }
@@ -258,7 +264,7 @@ public class IssueFields {
 
   @JsonView(IssueView.Update.class)
   @XmlJavaTypeAdapter(JiraDateStringAdapter.class)
-  @XmlElement(name = "customfield_10219")
+  @XmlElement(name = "customfield_10021")
   public Date getRtcCreated() { // done
     return rtcCreated;
   }
@@ -268,7 +274,7 @@ public class IssueFields {
   }
 
   @JsonView(IssueView.Update.class)
-  @XmlElement(name = "customfield_10202")
+  @XmlElement(name = "customfield_10024")
   public String getAcceptanceCriteria() { // done
     return acceptanceCriteria;
   }
@@ -278,7 +284,7 @@ public class IssueFields {
   }
 
   @JsonView(IssueView.Update.class)
-  @XmlElement(name = "customfield_10224")
+  @XmlElement(name = "customfield_10014")
   public JiraUser getResolver() { // done
     return resolver;
   }
@@ -287,7 +293,7 @@ public class IssueFields {
     this.resolver = resolver;
   }
 
-  @XmlElement(name = "customfield_10203")
+  @XmlElement(name = "customfield_10016")
   @JsonView(IssueView.Update.class)
   public JiraRadioItem isArchived() { // done
     return archived;
@@ -308,7 +314,7 @@ public class IssueFields {
   }
 
   @JsonView(IssueView.Update.class)
-  @XmlElement(name = "customfield_10231")
+  @XmlElement(name = "customfield_10008")
   public void setTeamName(String teamName) {
     this.teamName = teamName;
   }
@@ -347,7 +353,7 @@ public class IssueFields {
   }
 
   @JsonView(IssueView.Update.class)
-  @XmlElement(name = "customfield_10218")
+  @XmlElement(name = "customfield_10020")
   public CustomFieldOption getBisonProjectName() { // done
     return bisonProjectName;
   }
@@ -367,7 +373,7 @@ public class IssueFields {
   }
 
   @JsonView(IssueView.Update.class)
-  @XmlElement(name = "customfield_10209", nillable = true)
+  @XmlElement(name = "customfield_10022", nillable = true)
   public Integer getEpReqNr() { // done
     return epReqNr;
   }
@@ -377,7 +383,7 @@ public class IssueFields {
   }
 
   @JsonView(IssueView.Update.class)
-  @XmlElement(name = "customfield_10210", nillable = true)
+  @XmlElement(name = "customfield_10009", nillable = true)
   public Integer getEpReqNrUg() { // done
     return epReqNrUg;
   }
@@ -387,7 +393,7 @@ public class IssueFields {
   }
 
   @JsonView(IssueView.Update.class)
-  @XmlElement(name = "customfield_10207", nillable = true)
+  @XmlElement(name = "customfield_10010", nillable = true)
   public Integer getDpReqNr() { // done
     return dpReqNr;
   }
@@ -397,7 +403,7 @@ public class IssueFields {
   }
 
   @JsonView(IssueView.Update.class)
-  @XmlElement(name = "customfield_10204", nillable = true)
+  @XmlElement(name = "customfield_10011", nillable = true)
   public Integer getMarketBudget() { // done
     return marketBudget;
   }
@@ -417,7 +423,7 @@ public class IssueFields {
   }
 
   @JsonView(IssueView.Update.class)
-  @XmlElement(name = "customfield_10214")
+  @XmlElement(name = "customfield_10017")
   public JiraRadioItem isPoPreplanningDone() { // done
     return poPreplanningDone;
   }
@@ -488,7 +494,7 @@ public class IssueFields {
   }
 
   @JsonView(IssueView.Update.class)
-  @XmlElement(name = "customfield_10227", nillable = true)
+  @XmlElement(name = "customfield_10019", nillable = true)
   public Integer getSiloRanking() { // done
     return siloRanking;
   }
@@ -508,7 +514,7 @@ public class IssueFields {
   }
 
   @JsonView(IssueView.Update.class)
-  @XmlElement(name = "customfield_10225")
+  @XmlElement(name = "customfield_10015")
   public JiraRadioItem getRoadmap() { // done
     return roadmap;
   }
@@ -549,7 +555,7 @@ public class IssueFields {
   }
 
   @JsonView(IssueView.Update.class)
-  @XmlElement(name = "customfield_10211")
+  @XmlElement(name = "customfield_10012")
   public String getFiledAgainst() { // done
     return filedAgainst;
   }
@@ -559,7 +565,7 @@ public class IssueFields {
   }
 
   @JsonView(IssueView.Update.class)
-  @XmlElement(name = "customfield_10216")
+  @XmlElement(name = "customfield_10023")
   public String getPlannedFor() { // done
     return plannedFor;
   }
@@ -569,7 +575,7 @@ public class IssueFields {
   }
 
   @JsonView(IssueView.Update.class)
-  @XmlElement(name = "customfield_10006")
+  @XmlElement(name = "customfield_10000")
   public String getEpicLink() { // done
     return epicLink;
   }
@@ -606,7 +612,7 @@ public class IssueFields {
   }
 
   @JsonView(IssueView.Update.class)
-  @XmlElement(name = "customfield_10402")
+  @XmlElement(name = "customfield_10018")
   public String getRtcProjectArea() {
     return rtcProjectArea;
   }
@@ -614,6 +620,59 @@ public class IssueFields {
   public void setRtcProjectArea(String rtcProjectArea) {
     this.rtcProjectArea = rtcProjectArea;
   }
+
+@JsonView(IssueView.Update.class)
+@XmlElement(name = "customfield_10323")
+public String getAparId() {
+	return aparId;
+}
+
+public void setAparId(String aparId) {
+	this.aparId = aparId;
+}
+
+@JsonView(IssueView.Update.class)
+@XmlElement(name = "customfield_10324")
+public Version getFixedIn() {
+	return fixedIn;
+}
+
+public void setFixedIn(Version fixedIn) {
+	this.fixedIn = fixedIn;
+}
+
+@JsonView(IssueView.Update.class)
+@XmlElement(name = "customfield_10327")
+public List<CustomFieldOption> getCustomer15() {
+	if (customer15 == null) customer15 = new ArrayList<CustomFieldOption>();
+	return customer15;
+}
+
+public void setCustomer15(List<CustomFieldOption> customer15) {
+	this.customer15 = customer15;
+}
+
+
+@JsonView(IssueView.Update.class)
+@XmlElement(name = "customfield_10328")
+public CustomFieldOption getSeverity() {
+	return severity;
+}
+
+public void setSeverity(CustomFieldOption severity) {
+	this.severity = severity;
+}
+
+
+@JsonView(IssueView.Update.class)
+@XmlElement(name = "customfield_10329")
+public CustomFieldOption getImpact() {
+	return impact;
+}
+
+public void setImpact(CustomFieldOption impact) {
+	this.impact = impact;
+}
 
 
 }

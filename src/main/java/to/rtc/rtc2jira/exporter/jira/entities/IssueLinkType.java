@@ -25,10 +25,10 @@ public class IssueLinkType extends NamedEntity {
     DUPLICATE = new IssueLinkType("10002", "Duplicate");
     RELATES = new IssueLinkType("10003", "Relates");
     GIT_CODE_REVIEW = new IssueLinkType("10300", "Git Code Review");
-    HIERARCHY = new IssueLinkType(Settings.getInstance().getJiraLinktypeHierarchyId(), "Hierarchy");
-    CATEGORY = new IssueLinkType(Settings.getInstance().getJiraLinktypeCategoryId(), "Category");
-    ITERATION = new IssueLinkType(Settings.getInstance().getJiraLinktypeIterationId(), "Iteration");
-    STORY_TASKS = new IssueLinkType("10400", "Story Tasks");
+    HIERARCHY = new IssueLinkType("10203", "Hierarchy");
+    CATEGORY = new IssueLinkType("10201", "Category");
+    ITERATION = new IssueLinkType("10202", "Iteration");
+    STORY_TASKS = new IssueLinkType("10204", "Story Tasks");
   }
 
   String inward;
