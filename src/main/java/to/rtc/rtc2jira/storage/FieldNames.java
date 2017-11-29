@@ -70,6 +70,7 @@ public interface FieldNames {
   String APAR = "aparId";
   String FIXED_IN = "fixedIn";
   String FOUND_IN = "foundIn";
+  String RELEASE_INTRODUCED = "releaseIntroduced";
   String CUSTOMER_LIST = "customer15";
   String IMPACT = "impact";
   String TIME_SPENT = "timeSpent";

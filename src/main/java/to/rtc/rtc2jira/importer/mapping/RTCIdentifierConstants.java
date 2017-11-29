@@ -84,5 +84,7 @@ public interface RTCIdentifierConstants {
   public static final String PARENT = "parent";
   public static final String APAR = "aparId";
   public static final String FIXED_IN = "fixedIn";
+  public static final String FOUND_IN = "foundIn";
+  public static final String RELEASE_INTRODUCED = "releaseIntroduced";
   public static final String CUSTOMER_LIST = "customer15";
 }

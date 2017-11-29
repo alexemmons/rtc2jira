@@ -81,7 +81,9 @@ public class IssueFields {
   private String rtcProjectArea;
   
   private String aparId;
-  private Version fixedIn;
+  private String fixedIn;
+  private String foundIn;
+  private String releaseIntroduced;
   private List<CustomFieldOption> customer15 = new ArrayList<CustomFieldOption>();
   private CustomFieldOption severity;
   private CustomFieldOption impact;
@@ -632,12 +634,12 @@ public void setAparId(String aparId) {
 }
 
 @JsonView(IssueView.Update.class)
-@XmlElement(name = "customfield_10324")
-public Version getFixedIn() {
+@XmlElement(name = "customfield_10330")
+public String getFixedIn() {
 	return fixedIn;
 }
 
-public void setFixedIn(Version fixedIn) {
+public void setFixedIn(String fixedIn) {
 	this.fixedIn = fixedIn;
 }
 
@@ -672,6 +674,26 @@ public CustomFieldOption getImpact() {
 
 public void setImpact(CustomFieldOption impact) {
 	this.impact = impact;
+}
+
+@JsonView(IssueView.Update.class)
+@XmlElement(name = "customfield_10331")
+public String getFoundIn() {
+	return foundIn;
+}
+
+public void setFoundIn(String foundIn) {
+	this.foundIn = foundIn;
+}
+
+@JsonView(IssueView.Update.class)
+@XmlElement(name = "customfield_10332")
+public String getReleaseIntroduced() {
+	return releaseIntroduced;
+}
+
+public void setReleaseIntroduced(String releaseIntroduced) {
+	this.releaseIntroduced = releaseIntroduced;
 }
 
 

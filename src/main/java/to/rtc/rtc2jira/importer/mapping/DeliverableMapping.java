@@ -2,20 +2,15 @@ package to.rtc.rtc2jira.importer.mapping;
 
 import java.util.logging.Logger;
 
-import com.ibm.team.process.internal.common.Iteration;
 import com.ibm.team.workitem.common.internal.model.Deliverable;
 import com.ibm.team.workitem.common.internal.model.DeliverableHandle;
-import com.ibm.team.workitem.common.internal.model.impl.DeliverableHandleImpl;
 import com.ibm.team.workitem.common.model.IAttribute;
-import com.ibm.team.workitem.common.model.IWorkItem;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 
 import to.rtc.rtc2jira.importer.RTCImporter;
 import to.rtc.rtc2jira.importer.mapping.TargetMapping.IterationInfo;
 import to.rtc.rtc2jira.importer.mapping.TargetMapping.RtcIterationType;
-import to.rtc.rtc2jira.importer.mapping.spi.Mapping;
 import to.rtc.rtc2jira.importer.mapping.spi.MappingAdapter;
-import to.rtc.rtc2jira.storage.FieldNames;
 
 public class DeliverableMapping extends MappingAdapter {
 	  static final Logger LOGGER = Logger.getLogger(DeliverableMapping.class.getName());
@@ -26,6 +21,7 @@ public class DeliverableMapping extends MappingAdapter {
 	private Deliverable value;
 	private IterationInfo iterationInfo;
 	private String identifier;
+	private String name;
 	
 	public static final String NO_ITERATION = "NO_ITERATION";
 	
@@ -46,6 +42,7 @@ public class DeliverableMapping extends MappingAdapter {
 			// might have to bail and make value a string: deliverable.getName();
 //			value = deliverable;
 			iterationInfo = fromRtcDeliverable(deliverable);
+			name = deliverable.getName();
 		}
 	}
 
@@ -56,9 +53,10 @@ public class DeliverableMapping extends MappingAdapter {
 //		}
 	    if (iterationInfo != null) {
 	        String iterationJson = iterationInfo.marshall();
-	        doc.field(identifier, iterationJson);
+//	        doc.field(identifier, iterationJson);
+	        doc.field(identifier, name);
 	      } else {
-	        doc.field(identifier, NO_ITERATION);
+//	        doc.field(identifier, NO_ITERATION);
 	      }
 	}
 	

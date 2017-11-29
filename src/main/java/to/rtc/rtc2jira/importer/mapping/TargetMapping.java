@@ -15,18 +15,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.map.ObjectMapper;
 
-import to.rtc.rtc2jira.importer.RTCImporter;
-import to.rtc.rtc2jira.importer.mapping.spi.MappingAdapter;
-import to.rtc.rtc2jira.storage.FieldNames;
-
-import com.ibm.team.process.common.IIterationType;
 import com.ibm.team.process.common.IIterationTypeHandle;
 import com.ibm.team.process.internal.common.Iteration;
 import com.ibm.team.process.internal.common.IterationHandle;
 import com.ibm.team.process.internal.common.IterationType;
-import com.ibm.team.process.internal.common.IterationTypeHandle;
 import com.ibm.team.workitem.common.model.IAttribute;
 import com.orientechnologies.orient.core.record.impl.ODocument;
+
+import to.rtc.rtc2jira.importer.RTCImporter;
+import to.rtc.rtc2jira.importer.mapping.spi.MappingAdapter;
+import to.rtc.rtc2jira.storage.FieldNames;
 
 /**
  * @author roman.schaller
@@ -65,33 +63,44 @@ public class TargetMapping extends MappingAdapter {
     iterationInfo.endDate = iteration.getEndDate();
     iterationInfo.hasDeliverable = iteration.hasDeliverable();
     iterationInfo.archived = iteration.isArchived();
-    if (iteration.getParent() != null) {
+    if (iteration.getParent() != null)
       iterationInfo.parent = fromRtcIteration(fetchCompleteItem(iteration.getParent()));
-    }
-    String name = iterationInfo.name.toLowerCase();
-    if (name.contains("backlog")) {
-      iterationInfo.iterationType = RtcIterationType.backlog;
-    } else if (name.contains("timeslot")) {
-      iterationInfo.iterationType = RtcIterationType.timeslot;
-    } else if (name.contains("release")) {
-      iterationInfo.iterationType = RtcIterationType.release;
-      iterationInfo.hasDeliverable = true;
-    } else if (name.contains("parking")) {
-      iterationInfo.iterationType = RtcIterationType.sprint;
-    } else if (name.contains("sprint")) {
-      iterationInfo.iterationType = RtcIterationType.sprint;
-    } else {
-      LOGGER.warning("No unequivocal iteration type could be assigned to the iteration '" + name + "'");
-      if (name != null && name.contains(".")) {
-        iterationInfo.iterationType = RtcIterationType.release;
-      } else if (name != null && name.contains("/")) {
-        iterationInfo.iterationType = RtcIterationType.timeslot;
-      } else if (name != null && name.contains("201")) {
-        iterationInfo.iterationType = RtcIterationType.timeslot;
-      } else {
-        iterationInfo.iterationType = RtcIterationType.unknown;
-      }
-    }
+      
+    IIterationTypeHandle iterationTypeHandle = null;
+    iterationTypeHandle = iteration.getIterationType();
+    IterationType iterationType = null;
+    if (iterationTypeHandle != null)
+    iterationType = fetchCompleteItem(iterationTypeHandle);
+    
+    if (iterationType != null && iterationType.getId().equals("release"))
+    	iterationInfo.iterationType = RtcIterationType.release;
+    else
+    	iterationInfo.iterationType = RtcIterationType.unknown;
+    
+//    String name = iterationInfo.name.toLowerCase();
+//    if (name.contains("backlog")) {
+//      iterationInfo.iterationType = RtcIterationType.backlog;
+//    } else if (name.contains("timeslot")) {
+//      iterationInfo.iterationType = RtcIterationType.timeslot;
+//    } else if (name.contains("release")) {
+//      iterationInfo.iterationType = RtcIterationType.release;
+//      iterationInfo.hasDeliverable = true;
+//    } else if (name.contains("parking")) {
+//      iterationInfo.iterationType = RtcIterationType.sprint;
+//    } else if (name.contains("sprint")) {
+//      iterationInfo.iterationType = RtcIterationType.sprint;
+//    } else {
+//      LOGGER.warning("No unequivocal iteration type could be assigned to the iteration '" + name + "'");
+//      if (name != null && name.contains(".")) {
+//        iterationInfo.iterationType = RtcIterationType.release;
+//      } else if (name != null && name.contains("/")) {
+//        iterationInfo.iterationType = RtcIterationType.timeslot;
+//      } else if (name != null && name.contains("201")) {
+//        iterationInfo.iterationType = RtcIterationType.timeslot;
+//      } else {
+//        iterationInfo.iterationType = RtcIterationType.unknown;
+//      }
+//    }
     return iterationInfo;
   }
 

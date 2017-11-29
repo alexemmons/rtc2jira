@@ -61,7 +61,7 @@ public enum StateEnum {
   }, // 51 business need
   migr_invalid("10105", "Invalid", "com.ibm.team.apt.epic.workflow.state.s6",
       "com.ibm.team.apt.storyWorkflow.state.s2", "com.ibm.team.workitem.impedimentWorkflow.state.s3",
-      "com.ibm.team.workitem.taskWorkflow.state.s4") {
+      "com.ibm.team.workitem.taskWorkflow.state.s4", "com.ibm.team.workitem.retrospectiveWorkflow.state.s1") {
 
     @Override
     protected StatusCategory createStatusCategory() {
@@ -90,7 +90,7 @@ public enum StateEnum {
       return StateEnum.getMigrationTransitionMap(this);
     }
   }, // 51 business need
-  migr_done("10001", "Done", "com.ibm.team.apt.epic.workflow.state.s3", "com.ibm.team.apt.story.verified") {
+  migr_done("10001", "Done", "com.ibm.team.apt.epic.workflow.state.s3", "com.ibm.team.apt.story.verified", "com.ibm.team.workitem.retrospectiveWorkflow.state.finished") {
 
     @Override
     protected StatusCategory createStatusCategory() {
@@ -109,7 +109,7 @@ public enum StateEnum {
 
   }, // 51 business need
   migr_new("10108", "Start", "1", "com.ibm.team.apt.epic.workflow.state.s1", "com.ibm.team.apt.story.idea",
-      "com.ibm.team.workitem.impedimentWorkflow.state.s1") {
+      "com.ibm.team.workitem.impedimentWorkflow.state.s1", "com.ibm.team.workitem.retrospectiveWorkflow.state.new") {
 
     @Override
     protected StatusCategory createStatusCategory() {
@@ -182,7 +182,7 @@ public enum StateEnum {
     }
   }, // business
   migr_inProgress("3", "In Progress", "2", "com.ibm.team.apt.epic.workflow.state.s2", "com.ibm.team.apt.story.defined",
-      "com.ibm.team.workitem.businessneedWorkflow.state.s7") {
+      "com.ibm.team.workitem.businessneedWorkflow.state.s7", "com.ibm.team.workitem.retrospectiveWorkflow.state.inprogress") {
 
     @Override
     protected StatusCategory createStatusCategory() {

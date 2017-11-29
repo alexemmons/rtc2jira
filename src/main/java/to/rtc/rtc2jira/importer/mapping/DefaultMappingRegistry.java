@@ -93,6 +93,8 @@ public class DefaultMappingRegistry implements MappingRegistry {
     register(RTCIdentifierConstants.APAR, new StringMapping(FieldNames.APAR));
     register(RTCIdentifierConstants.CUSTOMER_LIST, new StringListMapping(FieldNames.CUSTOMER_LIST));
     register(RTCIdentifierConstants.FIXED_IN, new DeliverableMapping(FieldNames.FIXED_IN));
+    register(RTCIdentifierConstants.FOUND_IN, new DeliverableMapping(FieldNames.FOUND_IN));
+    register(RTCIdentifierConstants.RELEASE_INTRODUCED, new DeliverableMapping(FieldNames.RELEASE_INTRODUCED));
     
   };
 

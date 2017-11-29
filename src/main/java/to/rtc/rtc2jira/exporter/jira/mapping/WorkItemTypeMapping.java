@@ -7,6 +7,7 @@ import static to.rtc.rtc2jira.storage.WorkItemTypes.BUSINESSNEED;
 import static to.rtc.rtc2jira.storage.WorkItemTypes.DEFECT;
 import static to.rtc.rtc2jira.storage.WorkItemTypes.EPIC;
 import static to.rtc.rtc2jira.storage.WorkItemTypes.IMPEDIMENT;
+import static to.rtc.rtc2jira.storage.WorkItemTypes.RETROSPECTIVE;
 import static to.rtc.rtc2jira.storage.WorkItemTypes.STORY;
 import static to.rtc.rtc2jira.storage.WorkItemTypes.TASK;
 
@@ -72,6 +73,9 @@ public class WorkItemTypeMapping implements Mapping {
       case DEFECT:
         issueFields.setIssuetype(getIssueType(IssueType.BUG.getName(), project));
         break;
+      case RETROSPECTIVE:
+    	 issueFields.setIssuetype(getIssueType(IssueType.RETROSPECTIVE.getName(), project));
+    	 break;
       default:
         LOGGER.warning("Cannot determine issuetype for unknown workitemType: " + workitemType);
         break;

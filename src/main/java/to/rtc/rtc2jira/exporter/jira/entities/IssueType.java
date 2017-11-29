@@ -21,6 +21,7 @@ public class IssueType extends NamedEntity {
   public static final IssueType IMPEDIMENT;
   public static final IssueType CATEGORY;
   public static final IssueType ITERATION;
+  public static final IssueType RETROSPECTIVE;
 
   static {
     TASK = new IssueType("10003", "Task");
@@ -36,6 +37,7 @@ public class IssueType extends NamedEntity {
     IMPEDIMENT = new IssueType("10008", "Impediment");
     CATEGORY = new IssueType("10005", "Category");
     ITERATION = new IssueType("10006", "Iteration");
+    RETROSPECTIVE = new IssueType("10206", "Retrospective");
   }
 
   public IssueType() {}

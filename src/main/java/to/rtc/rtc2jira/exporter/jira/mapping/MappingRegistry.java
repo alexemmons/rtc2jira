@@ -71,6 +71,8 @@ public class MappingRegistry {
     registry.put(FieldNames.APAR, new APARMapping());
     registry.put(FieldNames.CUSTOMER_LIST, new CustomerListMapping());
     registry.put(FieldNames.FIXED_IN, new FixedInMapping());
+    registry.put(FieldNames.FOUND_IN, new FoundInMapping());
+    registry.put(FieldNames.RELEASE_INTRODUCED, new ReleaseIntroducedMapping());
     registry.put(FieldNames.IMPACT, new ImpactMapping());
   }
 
