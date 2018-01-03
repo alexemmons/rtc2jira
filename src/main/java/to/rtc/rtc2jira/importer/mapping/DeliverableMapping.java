@@ -32,6 +32,7 @@ public class DeliverableMapping extends MappingAdapter {
 	@Override
 	public void beforeWorkItem() {
 		value = null;
+		iterationInfo = null;
 	}
 
 	@Override
