@@ -24,20 +24,20 @@ public class IssueType extends NamedEntity {
   public static final IssueType RETROSPECTIVE;
 
   static {
-    TASK = new IssueType("10003", "Task");
-    SUB_TASK = new IssueType("10000", "Sub-task");
+    TASK = new IssueType("10002", "Task");
+    SUB_TASK = new IssueType("10003", "Sub-task");
     SUB_TASK.setSubtask(true);
-    USER_STORY = new IssueType("10007", "User Story");
-    STORY = new IssueType("10002", "Story");
-    EPIC = new IssueType("10001", "Epic");
+    USER_STORY = new IssueType("10015", "User Story");
+    STORY = new IssueType("10001", "Story");
+    EPIC = new IssueType("10000", "Epic");
     BUG = new IssueType("10004", "Bug");
-    NEW_FEATURE = new IssueType("10009", "New Feature");
-    IMPROVEMENT = new IssueType("10010", "Improvement");
-    BUSINESS_NEED = new IssueType("10011", "Business Need");
-    IMPEDIMENT = new IssueType("10008", "Impediment");
-    CATEGORY = new IssueType("10005", "Category");
-    ITERATION = new IssueType("10006", "Iteration");
-    RETROSPECTIVE = new IssueType("10206", "Retrospective");
+    NEW_FEATURE = new IssueType("10010", "New Feature");
+    IMPROVEMENT = new IssueType("10008", "Improvement");
+    BUSINESS_NEED = new IssueType("10005", "Business Need");
+    IMPEDIMENT = new IssueType("10007", "Impediment");
+    CATEGORY = new IssueType("10006", "Category");
+    ITERATION = new IssueType("10009", "Iteration");
+    RETROSPECTIVE = new IssueType("10011", "Retrospective");
   }
 
   public IssueType() {}

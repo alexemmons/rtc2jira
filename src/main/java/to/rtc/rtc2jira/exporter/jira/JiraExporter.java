@@ -528,10 +528,10 @@ public class JiraExporter implements Exporter {
       issue = cr.getEntity(Issue.class);
       IssueFields issueFields = issue.getFields();
       String retrievedIssueKey = issue.getKey();
-      if (!retrievedIssueKey.startsWith("RTC")) {
-        LOGGER.log(Level.WARNING, "The issue " + key + " has been moved to another project: " + retrievedIssueKey);
-        issue = null;
-      } else {
+//      if (!retrievedIssueKey.startsWith("RTC")) {
+//        LOGGER.log(Level.WARNING, "The issue " + key + " has been moved to another project: " + retrievedIssueKey);
+//        issue = null;
+//      } else {
         issueFields.setProject(project);
         store.setFields(workItem, of(FieldNames.JIRA_LAST_EXPORTED_STATUS, issueFields.getStatus().getId()));
         mappingRegistry.map(workItem, issue, store);
@@ -542,7 +542,7 @@ public class JiraExporter implements Exporter {
             && issueFields.getResolution() == null) {
           issueFields.setResolution(new IssueResolution(ResolutionEnum.done));
         }
-      }
+//      }
     } else {
       String issueKey = issue.getKey();
       LOGGER

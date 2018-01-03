@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 import to.rtc.rtc2jira.ExportManager;
 
 public enum StateEnum {
-  migr_verified("10004", "Verified", "4") {
+  migr_verified("10007", "Verified", "4") {
 	  @Override
 	    protected StatusCategory createStatusCategory() {
 	      return StatusCategory.createToDo();
@@ -59,7 +59,7 @@ public enum StateEnum {
       return StateEnum.getMigrationTransitionMap(this);
     }
   }, // 51 business need
-  migr_invalid("10105", "Invalid", "com.ibm.team.apt.epic.workflow.state.s6",
+  migr_invalid("10005", "Invalid", "com.ibm.team.apt.epic.workflow.state.s6",
       "com.ibm.team.apt.storyWorkflow.state.s2", "com.ibm.team.workitem.impedimentWorkflow.state.s3",
       "com.ibm.team.workitem.taskWorkflow.state.s4", "com.ibm.team.workitem.retrospectiveWorkflow.state.s1") {
 
@@ -78,7 +78,7 @@ public enum StateEnum {
       return true;
     }
   }, // 51 business need
-  migr_implemented("10104", "Implemented", "com.ibm.team.apt.story.tested") {
+  migr_implemented("10004", "Implemented", "com.ibm.team.apt.story.tested") {
 
     @Override
     protected StatusCategory createStatusCategory() {
@@ -108,7 +108,7 @@ public enum StateEnum {
     }
 
   }, // 51 business need
-  migr_new("10108", "Start", "1", "com.ibm.team.apt.epic.workflow.state.s1", "com.ibm.team.apt.story.idea",
+  migr_new("10000", "Start", "1", "com.ibm.team.apt.epic.workflow.state.s1", "com.ibm.team.apt.story.idea",
       "com.ibm.team.workitem.impedimentWorkflow.state.s1", "com.ibm.team.workitem.retrospectiveWorkflow.state.new") {
 
     @Override
@@ -206,7 +206,7 @@ public enum StateEnum {
       return StateEnum.getMigrationTransitionMap(this);
     }
   }, //
-  migr_deferred("10101", "Deferred", "com.ibm.team.apt.epic.workflow.state.s5",
+  migr_deferred("10003", "Deferred", "com.ibm.team.apt.epic.workflow.state.s5",
       "com.ibm.team.apt.storyWorkflow.state.s1", "54") {
 
     @Override

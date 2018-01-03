@@ -4,8 +4,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.codehaus.jackson.map.annotate.JsonView;
 
-import to.rtc.rtc2jira.Settings;
-
 @XmlRootElement
 public class IssueLinkType extends NamedEntity {
 
@@ -27,8 +25,8 @@ public class IssueLinkType extends NamedEntity {
     GIT_CODE_REVIEW = new IssueLinkType("10300", "Git Code Review");
     HIERARCHY = new IssueLinkType("10203", "Hierarchy");
     CATEGORY = new IssueLinkType("10201", "Category");
-    ITERATION = new IssueLinkType("10202", "Iteration");
-    STORY_TASKS = new IssueLinkType("10204", "Story Tasks");
+    ITERATION = new IssueLinkType("10204", "Iteration");
+    STORY_TASKS = new IssueLinkType("10206", "Story Tasks");
   }
 
   String inward;

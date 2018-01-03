@@ -1,10 +1,10 @@
 package to.rtc.rtc2jira.exporter.jira.entities;
 
 public enum ImpactEnum {
-	major("impact.literal.l4", "10314"),
-	significant("impact.literal.l3", "10313"),
-	moderate("impact.literal.l2", "10312"),
-	minor("impact.literal.l1", "10311");
+	major("impact.literal.l4", "10128"),
+	significant("impact.literal.l3", "10129"),
+	moderate("impact.literal.l2", "10130"),
+	minor("impact.literal.l1", "10131");
 
 
 
