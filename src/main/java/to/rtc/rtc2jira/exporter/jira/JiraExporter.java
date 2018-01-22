@@ -69,52 +69,52 @@ public class JiraExporter implements Exporter {
     INSTANCE = new JiraExporter();
     LOGGER.addHandler(ExportManager.DEFAULT_LOG_HANDLER);
     // florian
-    _tempMovedItems.add(Integer.valueOf(35392));
-    _tempMovedItems.add(Integer.valueOf(36385));
-    _tempMovedItems.add(Integer.valueOf(36068));
-    // franz
-    _tempMovedItems.add(Integer.valueOf(30379));
-    _tempMovedItems.add(Integer.valueOf(31428));
-    _tempMovedItems.add(Integer.valueOf(31858));
-    _tempMovedItems.add(Integer.valueOf(34034));
-    _tempMovedItems.add(Integer.valueOf(34035));
-    _tempMovedItems.add(Integer.valueOf(34477));
-    _tempMovedItems.add(Integer.valueOf(34549));
-    _tempMovedItems.add(Integer.valueOf(34663));
-    _tempMovedItems.add(Integer.valueOf(34887));
-    _tempMovedItems.add(Integer.valueOf(34888));
-    _tempMovedItems.add(Integer.valueOf(34889));
-    _tempMovedItems.add(Integer.valueOf(34890));
-    _tempMovedItems.add(Integer.valueOf(34892));
-    _tempMovedItems.add(Integer.valueOf(34893));
-    _tempMovedItems.add(Integer.valueOf(34895));
-    _tempMovedItems.add(Integer.valueOf(32606));
-    _tempMovedItems.add(Integer.valueOf(35964));
-    _tempMovedItems.add(Integer.valueOf(36132));
-    _tempMovedItems.add(Integer.valueOf(36133));
-    _tempMovedItems.add(Integer.valueOf(36134));
-    _tempMovedItems.add(Integer.valueOf(36135));
-    _tempMovedItems.add(Integer.valueOf(36189));
-    _tempMovedItems.add(Integer.valueOf(36192));
-    _tempMovedItems.add(Integer.valueOf(36193));
-    _tempMovedItems.add(Integer.valueOf(36194));
-    _tempMovedItems.add(Integer.valueOf(36241));
-    _tempMovedItems.add(Integer.valueOf(36242));
-    _tempMovedItems.add(Integer.valueOf(36284));
-    _tempMovedItems.add(Integer.valueOf(36480));
-    _tempMovedItems.add(Integer.valueOf(36544));
-    _tempMovedItems.add(Integer.valueOf(36696));
-    _tempMovedItems.add(Integer.valueOf(36761));
-    _tempMovedItems.add(Integer.valueOf(36774));
-    _tempMovedItems.add(Integer.valueOf(36793));
-
-    // unknown
-    _tempMovedItems.add(Integer.valueOf(33815));
-    _tempMovedItems.add(Integer.valueOf(36800));
-    _tempMovedItems.add(Integer.valueOf(36801));
-    // 19042016
-    _tempMovedItems.add(Integer.valueOf(36751));
-    _tempMovedItems.add(Integer.valueOf(36811));
+//    _tempMovedItems.add(Integer.valueOf(35392));
+//    _tempMovedItems.add(Integer.valueOf(36385));
+//    _tempMovedItems.add(Integer.valueOf(36068));
+//    // franz
+//    _tempMovedItems.add(Integer.valueOf(30379));
+//    _tempMovedItems.add(Integer.valueOf(31428));
+//    _tempMovedItems.add(Integer.valueOf(31858));
+//    _tempMovedItems.add(Integer.valueOf(34034));
+//    _tempMovedItems.add(Integer.valueOf(34035));
+//    _tempMovedItems.add(Integer.valueOf(34477));
+//    _tempMovedItems.add(Integer.valueOf(34549));
+//    _tempMovedItems.add(Integer.valueOf(34663));
+//    _tempMovedItems.add(Integer.valueOf(34887));
+//    _tempMovedItems.add(Integer.valueOf(34888));
+//    _tempMovedItems.add(Integer.valueOf(34889));
+//    _tempMovedItems.add(Integer.valueOf(34890));
+//    _tempMovedItems.add(Integer.valueOf(34892));
+//    _tempMovedItems.add(Integer.valueOf(34893));
+//    _tempMovedItems.add(Integer.valueOf(34895));
+//    _tempMovedItems.add(Integer.valueOf(32606));
+//    _tempMovedItems.add(Integer.valueOf(35964));
+//    _tempMovedItems.add(Integer.valueOf(36132));
+//    _tempMovedItems.add(Integer.valueOf(36133));
+//    _tempMovedItems.add(Integer.valueOf(36134));
+//    _tempMovedItems.add(Integer.valueOf(36135));
+//    _tempMovedItems.add(Integer.valueOf(36189));
+//    _tempMovedItems.add(Integer.valueOf(36192));
+//    _tempMovedItems.add(Integer.valueOf(36193));
+//    _tempMovedItems.add(Integer.valueOf(36194));
+//    _tempMovedItems.add(Integer.valueOf(36241));
+//    _tempMovedItems.add(Integer.valueOf(36242));
+//    _tempMovedItems.add(Integer.valueOf(36284));
+//    _tempMovedItems.add(Integer.valueOf(36480));
+//    _tempMovedItems.add(Integer.valueOf(36544));
+//    _tempMovedItems.add(Integer.valueOf(36696));
+//    _tempMovedItems.add(Integer.valueOf(36761));
+//    _tempMovedItems.add(Integer.valueOf(36774));
+//    _tempMovedItems.add(Integer.valueOf(36793));
+//
+//    // unknown
+//    _tempMovedItems.add(Integer.valueOf(33815));
+//    _tempMovedItems.add(Integer.valueOf(36800));
+//    _tempMovedItems.add(Integer.valueOf(36801));
+//    // 19042016
+//    _tempMovedItems.add(Integer.valueOf(36751));
+//    _tempMovedItems.add(Integer.valueOf(36811));
 
   }
 
@@ -153,7 +153,7 @@ public class JiraExporter implements Exporter {
     Date modified = StorageQuery.getField(item, FieldNames.MODIFIED, Date.from(Instant.now()));
     Date lastExport = StorageQuery.getField(item, FieldNames.JIRA_EXPORT_TIMESTAMP, new Date(0));
     if (Settings.getInstance().isForceUpdate() || modified.compareTo(lastExport) > 0) {
-      if (!"SRVS Management".equals(item.field(FieldNames.PROJECT_AREA))
+      if (!"SRVS Management".equals(item.field(FieldNames.PROJECT_AREA)) && !"DevIT SCM".equals(item.field(FieldNames.PROJECT_AREA))
           && !_tempMovedItems.contains(Integer.valueOf(workItemId))) {
         updateItem(item);
         updatedItems.add(Integer.valueOf(workItemId));
@@ -464,12 +464,13 @@ public class JiraExporter implements Exporter {
     StateEnum currentStatus = lastExportedIssue.getFields().getStatus().getStatusEnum(issueType);
     List<String> transitionPath = null;
     if (currentStatus.isEditable() && currentStatus == targetStatus) {
-      transitionPath = currentStatus.forceTransitionPath(targetStatus);
+//      transitionPath = currentStatus.forceTransitionPath(targetStatus);
+    	transitionPath = new ArrayList<>();
     } else {
       transitionPath = currentStatus.getTransitionPath(targetStatus);
     }
     // put issue in editable state
-    if (currentStatus.isEditable()) {
+    if (currentStatus.isEditable() && transitionPath.size() > 0) {
       String intermediateTransitionId = transitionPath.remove(0);
       if (!doTransition(issue, intermediateTransitionId)) {
         throw new Exception();
